@@ -31,7 +31,7 @@ done\
 fluxbox -display $DISPLAY \&\
 \
 x11vnc -forever -usepw -shared -rfbport 5900 -display $DISPLAY \&\
-\
+sleep 5 \
 \/noVNC\/utils\/launch.sh --vnc $(hostname -i):5900 \&\
 \
 wait \$NODE_PID/' \

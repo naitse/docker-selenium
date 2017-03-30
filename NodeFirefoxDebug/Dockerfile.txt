@@ -11,6 +11,20 @@ RUN apt-get update -qqy \
   git
 
 #=====
+# PYTHON
+#=====
+RUN apt-get update -qqy \
+  && apt-get -qqy install \
+  python
+
+#=====
+# NET-TOOLS
+#=====
+RUN apt-get update -qqy \
+  && apt-get -qqy install \
+  net-tools
+
+#=====
 # noVNC
 #=====
 RUN cd / \ 
