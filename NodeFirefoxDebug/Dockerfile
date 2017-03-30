@@ -2,10 +2,24 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM selenium/node-firefox:3.3.1-arsenic
+FROM selenium/node-firefox:local
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 
 USER root
+
+#=====
+# GIT
+#=====
+RUN apt-get update -qqy \
+  && apt-get -qqy install \
+  git
+
+#=====
+# noVNC
+#=====
+RUN cd / \ 
+  && git clone git://github.com/kanaka/noVNC \
+  && chmod -R 777 /noVNC
 
 #=====
 # VNC

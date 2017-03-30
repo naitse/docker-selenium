@@ -15,6 +15,11 @@ if [ -z "$HUB_PORT_4444_TCP_ADDR" ]; then
   exit 1
 fi
 
+if [ -z "$NODE_PORT" ]; then
+  echo Using default SE port 5555 1>&2
+  NODE_PORT=5555
+fi
+
 function shutdown {
   kill -s SIGTERM $NODE_PID
   wait $NODE_PID
@@ -43,6 +48,7 @@ env | cut -f 1 -d "=" | sort > asroot
   xvfb-run -n $SERVERNUM --server-args="-screen 0 $GEOMETRY -ac +extension RANDR" \
   java ${JAVA_OPTS} -jar /opt/selenium/selenium-server-standalone.jar \
     -role node \
+    -port $NODE_PORT \
     -hub http://$HUB_PORT_4444_TCP_ADDR:$HUB_PORT_4444_TCP_PORT/grid/register \
     -nodeConfig /opt/selenium/config.json \
     ${SE_OPTS} &
@@ -62,5 +68,7 @@ done
 fluxbox -display $DISPLAY &
 
 x11vnc -forever -usepw -shared -rfbport 5900 -display $DISPLAY &
+
+/noVNC/utils/launch.sh --vnc localhost:5900 --listen $VNC_LISTENER_PORT &
 
 wait $NODE_PID
