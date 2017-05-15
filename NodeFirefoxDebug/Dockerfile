@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM selenium/node-firefox:local
+FROM selenium/node-base:3.4.0-chromium
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 
 USER root
@@ -17,7 +17,7 @@ RUN apt-get update -qqy \
 #=====
 # noVNC
 #=====
-RUN cd / \ 
+RUN cd / \
   && git clone git://github.com/kanaka/noVNC \
   && chmod -R 777 /noVNC
 

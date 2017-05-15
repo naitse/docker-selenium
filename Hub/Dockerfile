@@ -2,7 +2,7 @@
 # NOTE: DO *NOT* EDIT THIS FILE.  IT IS GENERATED.
 # PLEASE UPDATE Dockerfile.txt INSTEAD OF THIS FILE
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-FROM selenium/base:3.3.1-arsenic
+FROM selenium/base:3.4.0-chromium
 MAINTAINER Selenium <selenium-developers@googlegroups.com>
 
 #========================
@@ -35,4 +35,3 @@ RUN chown -R seluser /opt/selenium
 USER seluser
 
 CMD ["/opt/bin/entry_point.sh"]
-
